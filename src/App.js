@@ -1,24 +1,19 @@
-import React, {useState} from 'react'
-import './App.css';
+import React from 'react'
+import { Link, Route } from 'wouter'
+import ListOfGifs from './components/ListOfGifs'
+import GifDetails from './components/GifDetails'
+import './App.css'
 
-const GIFS = [
-  `https://media3.giphy.com/media/WJjLyXCVvro2I/giphy.gif?cid=ecf05e47bd7c52dac7526223075e6ad61dc867860a792cc2&rid=giphy.gif&ct=g`,
-  `https://media1.giphy.com/media/fxfuiruxVLbdb2fiAy/giphy.webp`
-]
-const diferentGifts = [
-  `https://media0.giphy.com/media/vJ6ikzK0kL5h719fXc/giphy.webp`,
-  `https://media1.giphy.com/media/IZvPPwILs6ZGFbvLdO/giphy.webp`
-]
 function App() {
-
-  const [ value, updateValue ] = useState(GIFS)
   return (
     <div className="App">
       <section className="App-content">
-        {
-          value.map(gif => <img src={gif} alt="gif" />)
-        }
-        <button onClick={ ()=> updateValue(diferentGifts) }>Cambiar Gifs</button>
+        <h2>App</h2>
+        <Link to='/gif/panda'>Gif de pandas</Link>
+        <Link to='/gif/programming'>Gif de programming</Link>
+        <Link to='/gif/argentina'>Gif de argentina</Link>
+        <Route path='/gif/:keyword' component={ListOfGifs} />
+        <Route path="/gif/:keyword/#:id" component={GifDetails} />
       </section>
     </div>
   );
